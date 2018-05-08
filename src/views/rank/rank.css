@@ -1,0 +1,7 @@
+.rank img {
+  width: 70px;
+  height: 70px;
+}
+.rank .am-list-item-middle {
+    min-height: 83px;
+}

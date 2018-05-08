@@ -1,0 +1,7 @@
+.singer-list img {
+  width: 70px;
+  height: 70px;
+}
+.singer-list .am-list-item-middle {
+    min-height: 83px;
+}

@@ -1,15 +1,11 @@
 import React,{Component}  from 'react';
+
 import NewSong from '@/views/new-songs/new-songs'
 import Rank from '@/views/rank/rank'
 import Singer from '@/views/singer/singer'
 import SingerList from '@/views/singer/singer-list/singer-list'
-/* import Plist from '@/views/home/plist/good-song'
-import Rank from '@/views/home/rank/rank'
-import HotSinger from '@/views/home/singer/singer'
-import SingerList from '@/views/home/singer/singer-list/singer-list'
-import SingerInfo from '@/views/home/singer/singer-info/singer-info'
+import SingerInfo from '@/views/singer/singer-info/singer-info'
 
-import Search from '@/views/search/search' */
 import { Icon } from 'antd-mobile';
 import {withRouter} from 'react-router-dom'
 
@@ -43,7 +39,7 @@ let routes = [
   {
     path: '/plist',
     title: '歌单',
-    route: false,
+    route: true,
     nav: true,
     index: 2,
     component: () => <div>歌单</div>
@@ -66,7 +62,7 @@ let routes = [
       }
     })
   },
-   /* {
+   {
     path: '/singer/info/:singerid',
     title: '歌手列表',
     route: false,
@@ -76,7 +72,7 @@ let routes = [
       }
     })
   },
-  {
+  /* {
     path: '/search',
     title: '搜索',
     route: false,

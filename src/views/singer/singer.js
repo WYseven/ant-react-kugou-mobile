@@ -18,7 +18,10 @@ class Singer extends Component {
           data.map((val) => {
             return (
               <List key={val.classid} className="my-list">
-                <Link to={'/singer/list/' + val.classid}>
+                <Link to={{
+                  pathname: '/singer/list/' + val.classid,
+                  search: 'tip=' + val.classname
+                }}>
                   <Item arrow="horizontal">{val.classname}</Item>
                 </Link>
               </List>

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { List, NavBar, Icon } from 'antd-mobile';
+import { withRouter } from 'react-router-dom';
 import './singer-list.css'
+import { formatStringToObject} from '@/utils/utils'
 const Item = List.Item;
 
 class SingerList extends Component {
@@ -16,7 +18,11 @@ class SingerList extends Component {
           mode="light"
           icon={<Icon type="left" />}
           onLeftClick={() => history.go(-1)}
-        >NavBar</NavBar>
+        >
+        {
+          formatStringToObject(this.props.location.search).tip
+        }
+        </NavBar>
         {
           data.map((val) => {
             return (
@@ -24,7 +30,7 @@ class SingerList extends Component {
                 <Item
                   thumb={val.imgurl.replace(/{size}/, 240)}
                   arrow="horizontal"
-                  onClick={() => { }}
+                  onClick={() => { history.push('/singer/info/' + val.singerid) }}
                 >{val.singername}</Item>
               </List>
             )
@@ -35,4 +41,4 @@ class SingerList extends Component {
   }
 }
  
-export default SingerList;
+export default withRouter(SingerList);

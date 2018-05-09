@@ -29,7 +29,6 @@ class TabNav extends Component {
     let item = routers.filter((item) => {
       return item.path === location.pathname;
     })[0];
-    
     return ( 
       <div>
         <StickyContainer>

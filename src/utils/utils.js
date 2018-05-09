@@ -11,7 +11,7 @@ export  function formatStringToObject(query){
   let index = query.indexOf('?') === -1 ? 0 : 1
   return query.slice(index).split('&').reduce((o,item) => {
     let arr = item.split('=')
-    o[arr[0]] = arr[1]
+    o[arr[0]] = decodeURIComponent(arr[1])
     return o
   },{})
 }

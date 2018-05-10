@@ -33,6 +33,7 @@
   },
   "devDependencies": {
     "babel-plugin-import": "^1.7.0",
+    "qiniu": "^7.1.5",
     "react-scripts": "^1.1.4"
   }
 }

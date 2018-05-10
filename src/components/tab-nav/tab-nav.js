@@ -8,7 +8,13 @@ import { routers } from "@/router";
 
 function renderTabBar(props) {
   return (<Sticky>
-    {({ style }) => <div style={{ ...style, zIndex: 1 }}><Tabs.DefaultTabBar {...props} /></div>}
+    {({ style }) =>{ 
+      return (
+        <div style={{ ...style, zIndex: 1 }}>
+          <Tabs.DefaultTabBar {...props}/>
+        </div>
+      )}
+    }
   </Sticky>);
 }
 const tabs = routers.filter((item) => {
@@ -18,7 +24,9 @@ const tabs = routers.filter((item) => {
 class TabNav extends Component {
   constructor(props) {
     super(props);
-    this.state = {  }
+    this.state = { 
+      n: 0
+     }
   }
   tabClick = (tab,index) => {
     let {history} = this.props;
@@ -29,6 +37,7 @@ class TabNav extends Component {
     let item = routers.filter((item) => {
       return item.path === location.pathname;
     })[0];
+
     return ( 
       <div>
         <StickyContainer>

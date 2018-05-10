@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { List, NavBar, Icon } from 'antd-mobile';
+import { List } from 'antd-mobile';
 import { withRouter } from 'react-router-dom';
 import './singer-list.css'
 import { formatStringToObject} from '@/utils/utils'
+import GoBack from '@/components/goback/goback'
 const Item = List.Item;
 
 class SingerList extends Component {
@@ -14,15 +15,7 @@ class SingerList extends Component {
     let {data,history} = this.props;
     return ( 
       <div className="singer-list">
-        <NavBar
-          mode="light"
-          icon={<Icon type="left" />}
-          onLeftClick={() => history.go(-1)}
-        >
-        {
-          formatStringToObject(this.props.location.search).tip
-        }
-        </NavBar>
+        <GoBack title={formatStringToObject(this.props.location.search).tip}/>
         {
           data.map((val) => {
             return (

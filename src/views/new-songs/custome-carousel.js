@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Carousel } from 'antd-mobile';
-
 class CustomeCarousel extends Component {
   constructor(props) {
     super(props);

@@ -34,7 +34,7 @@ export const getNewSongs = () => {
   return oneLeve('/proxy/?json=true')
 }
 
-export const getGoodSongsInfo = () => {
+export const getPlist = () => {
   return oneLeve('/proxy/plist/index&json=true')
 }
 

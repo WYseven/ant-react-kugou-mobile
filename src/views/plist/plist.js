@@ -1,30 +1,27 @@
 import React, { Component } from 'react';
 import CommList from '@/components/comm-list/comm-list'
-import './rank.css'
 
-
-class Rank extends Component {
+class Plist extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      slideIndex: 0,
-    }
+    this.state = {}
   }
   render() {
     let { data } = this.props;
     let list = data.map((item) => {
       return {
-        commid: item.rankid,
-        commname: item.rankname,
-        imgurl: item.imgurl
+        commid: item.specialid,
+        commname: item.specialname,
+        imgurl: item.imgurl,
+        brief: item.playcount
       }
     })
     return (
-      <div className="rank">
+      <div>
         <CommList list={list} />
       </div>
     )
   }
 }
 
-export default Rank;
+export default Plist;

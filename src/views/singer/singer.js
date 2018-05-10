@@ -11,7 +11,6 @@ class Singer extends Component {
   }
   render() { 
     let { data } = this.props;
-    console.log(data)
     return ( 
       <div className="singer">
         {

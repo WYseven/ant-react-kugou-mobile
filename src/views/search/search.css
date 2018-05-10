@@ -1,0 +1,8 @@
+.search-loading {
+  width: 100%;
+  z-index: 999;
+  background: linear-gradient(top,rgba(0,0,0,.6),transparent);
+  position: absolute;
+  left:0px;
+  top: 0px;
+}

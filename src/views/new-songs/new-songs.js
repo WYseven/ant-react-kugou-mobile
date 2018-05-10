@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import {List } from 'antd-mobile';
 import CustomeCarousel from './custome-carousel'
 import SongList from '@/components/song-list/song-list'
 

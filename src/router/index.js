@@ -3,8 +3,12 @@ import React,{Component}  from 'react';
 import NewSong from '@/views/new-songs/new-songs'
 import Rank from '@/views/rank/rank'
 import Singer from '@/views/singer/singer'
+import Plist from '@/views/plist/plist'
 import SingerList from '@/views/singer/singer-list/singer-list'
 import SingerInfo from '@/views/singer/singer-info/singer-info'
+
+import Search from '@/views/search/search'
+import Loading from '@/components/loading/loading'
 
 import { Icon } from 'antd-mobile';
 import {withRouter} from 'react-router-dom'
@@ -42,7 +46,7 @@ let routes = [
     route: true,
     nav: true,
     index: 2,
-    component: () => <div>歌单</div>
+    component: getComponent(Plist, 'getPlist')
   },
   {
     path: '/singer',
@@ -72,12 +76,12 @@ let routes = [
       }
     })
   },
-  /* {
+ {
     path: '/search',
     title: '搜索',
     route: false,
     component: Search
-  } */
+  }
 ]
 
 // 封装，用来统一的设置请求的数据
@@ -102,7 +106,7 @@ function getComponent(ComponentName,serverName,mapMatch){
     render(){
       let data = this.state.data;
       // 当没有值得时候，不需要渲染
-      return data.data ? <ComponentName {...this.state.data} {...this.props} /> : <Icon type="loading"/>;
+      return data.data ? <ComponentName {...this.state.data} {...this.props} /> : <Loading />;
     }
   }
 

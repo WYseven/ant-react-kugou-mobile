@@ -3,6 +3,9 @@ import { List } from 'antd-mobile';
 const Item = List.Item;
 
 class SongList extends Component {
+  static defaultProps = {
+    title: '最新歌曲'
+  }
   constructor(props) {
     super(props);
     this.state = {  }
@@ -10,7 +13,7 @@ class SongList extends Component {
   render() {
     let { data} = this.props;
     return ( 
-      <List renderHeader={() => '最新歌曲'}>
+      <List renderHeader={() => this.props.title}>
         {
           data.map((val) => {
 

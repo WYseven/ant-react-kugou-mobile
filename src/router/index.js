@@ -10,7 +10,6 @@ import SingerInfo from '@/views/singer/singer-info/singer-info'
 import Search from '@/views/search/search'
 import Loading from '@/components/loading/loading'
 
-import { Icon } from 'antd-mobile';
 import {withRouter} from 'react-router-dom'
 
 import * as server from '@/server/'

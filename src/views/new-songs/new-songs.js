@@ -15,7 +15,7 @@ class NewSongs extends Component {
     return ( 
       <div>
         <CustomeCarousel banner={banner} />
-        <SongList data={data}/>
+        <SongList data={data} />
       </div>
     )
   }

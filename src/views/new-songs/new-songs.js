@@ -13,10 +13,10 @@ class NewSongs extends Component {
   render() { 
     let { banner,data } = this.props;
     return ( 
-      <div>
+      <React.Fragment>
         <CustomeCarousel banner={banner} />
         <SongList data={data} />
-      </div>
+      </React.Fragment>
     )
   }
 }

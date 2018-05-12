@@ -6,6 +6,7 @@ import Singer from '@/views/singer/singer'
 import Plist from '@/views/plist/plist'
 import SingerList from '@/views/singer/singer-list/singer-list'
 import SingerInfo from '@/views/singer/singer-info/singer-info'
+import Player from '@/views/player/player'
 
 import Search from '@/views/search/search'
 import Loading from '@/components/loading/loading'
@@ -75,11 +76,17 @@ let routes = [
       }
     })
   },
- {
+  {
     path: '/search',
     title: '搜索',
     route: false,
     component: Search
+  },
+  {
+    path: '/player',
+    title: '播放器',
+    route: false,
+    component: Player
   }
 ]
 

@@ -9,14 +9,17 @@ class GoBack extends Component {
   render() { 
     let { history} = this.props;
     return ( 
-      <NavBar
-        className={this.props.className}
-        mode="light"
-        icon={<Icon type="left" />}
-        onLeftClick={() => history.go(-1)}
-      >
-        {this.props.title}
-      </NavBar>
+      <div style={{zIndex:999,position:"relative"}}>
+        <NavBar
+          className={this.props.className}
+          mode="light"
+          icon={<Icon type="left" />}
+          onLeftClick={() => history.go(-1)}
+          
+        >
+          {this.props.title}
+        </NavBar>
+      </div>
 
     )
   }

@@ -1,3 +1,9 @@
-.singer {
-  padding: 0px 20px;
+.singer .am-list-item {
+  margin-bottom: .5rem;
+}
+
+.singer-list .am-list-thumb img {
+  width: 2rem;
+  height: 2rem;
+  padding: .5rem 0;
 }

@@ -1,0 +1,13 @@
+.top .am-navbar-left{
+  background:url('http://m.kugou.com/v3/static/images/index/logo.png') 0 .2rem no-repeat;
+  margin-left: .3rem;
+  background-size: 100%;
+}
+
+.header {
+  position: fixed;
+  top:0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+}

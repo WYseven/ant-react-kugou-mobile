@@ -1,39 +1,33 @@
 {
-  "name": "ant-mobile-kugou2",
+  "name": "kugou-project",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "antd-mobile": "^2.1.8",
+    "antd-mobile": "^2.2.2",
     "axios": "^0.18.0",
-    "jsonp": "^0.2.1",
-    "react": "^16.3.2",
-    "react-app-rewired": "^1.5.2",
-    "react-dom": "^16.3.2",
-    "react-router-dom": "^4.2.2",
-    "react-sticky": "^6.0.2"
+    "better-scroll": "^1.12.6",
+    "classnames": "^2.2.6",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "react-redux": "^5.0.7",
+    "react-router-dom": "^4.3.1",
+    "react-scripts": "1.1.4",
+    "redux": "^4.0.0",
+    "redux-thunk": "^2.3.0"
   },
   "scripts": {
-    "start": "react-app-rewired start",
-    "build": "react-app-rewired build",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
   "proxy": {
-    "/proxy/": {
-      "target": "http://m.kugou.com",
-      "secure": false,
+    "/kugou": {
+      "target": "http://m.kugou.com/",
       "changeOrigin": true,
       "pathRewrite": {
-        "^/proxy": ""
-      },
-      "headers": {
-        "User-Agent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Mobile Safari/537.36"
+        "^/kugou": ""
       }
     }
-  },
-  "devDependencies": {
-    "babel-plugin-import": "^1.7.0",
-    "qiniu": "^7.1.5",
-    "react-scripts": "^1.1.4"
   }
 }

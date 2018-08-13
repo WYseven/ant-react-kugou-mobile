@@ -1,35 +1,33 @@
-import React, { Component } from 'react';
-import './singer.css'
+import React, { Component } from 'react'
+import { getDataComponent } from '../../components/getDataComponent'
 import { List } from 'antd-mobile';
-import { Link} from 'react-router-dom'
+import './singer.css'
+import {withRouter} from 'react-router-dom'
 const Item = List.Item;
 
 class Singer extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {  }
-  }
-  render() { 
-    let { data } = this.props;
-    return ( 
+  render() {
+    let {data}  = this.props.data;
+    return (
       <div className="singer">
+        <List className="my-list">
         {
-          data.map((val) => {
-            return (
-              <List key={val.classid} className="my-list">
-                <Link to={{
-                  pathname: '/singer/list/' + val.classid,
-                  search: 'tip=' + val.classname
+            data.map((item) => {
+              return (
+                <Item key={item.classid}
+                arrow="horizontal" onClick={() => { 
+                  this.props.history.push(`/singer/list/${item.classid}`)
                 }}>
-                  <Item arrow="horizontal">{val.classname}</Item>
-                </Link>
-              </List>
-            )
-          })
+                  {item.classname}
+                </Item>
+              )
+            })
         }
+          
+        </List>
       </div>
-     )
+    )
   }
 }
- 
-export default Singer;
+
+export default withRouter(getDataComponent('getSingers')(Singer)); 

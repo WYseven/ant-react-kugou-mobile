@@ -1,30 +1,31 @@
-import React, { Component } from 'react';
-import CommList from '@/components/comm-list/comm-list'
-import './rank.css'
-
-
-class Rank extends Component {
+import React, { Component } from 'react'
+import { getDataComponent } from '../../components/getDataComponent'
+ class Rank extends Component {
+  
   constructor(props) {
     super(props);
     this.state = {
-      slideIndex: 0,
+      arr: []
+    };
+  }
+  componentDidMount() {
+    let arr = [];
+    for (var i = 0; i < 100; i++) {
+      arr.push(i);
     }
+
+    this.setState({
+      arr
+    })
   }
   render() {
-    let { data } = this.props;
-    let list = data.map((item) => {
-      return {
-        commid: item.rankid,
-        commname: item.rankname,
-        imgurl: item.imgurl
-      }
-    })
     return (
-      <div className="rank">
-        <CommList list={list} />
+      <div>
+        {
+          this.state.arr.map(item => <p key={item}>{item}</p>)
+        }
       </div>
     )
   }
 }
-
-export default Rank;
+export default getDataComponent('getRankList')(Rank)

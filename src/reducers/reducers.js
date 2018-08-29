@@ -11,8 +11,7 @@ export default function (state={},action) {
         ...state,
         songList: action.songList
       }
-      break;
-  
+      break;  
     default:
       return state;
       break;

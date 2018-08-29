@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import classnames from 'classnames'
-/* 
-  touchStart
-  touchMove
-  touchEnd
-*/
+import { sToM } from '../../../utils/utils'
 export default class Controls extends Component {
+  static defaultProps = {
+    duration: 1,
+    currentTime: 0
+  }
   constructor(props) {
     super(props);
     this.state = {
@@ -37,7 +37,6 @@ export default class Controls extends Component {
   }
   move = (e) => {
     // 作用的手指的事件对象列表
-    console.log(e.changedTouches[0])
     let react = this.progress.current.getBoundingClientRect().left;
     let l = e.changedTouches[0].pageX - react - this.circle.current.offsetWidth / 2
     
@@ -54,9 +53,9 @@ export default class Controls extends Component {
       isMove: false
     })
 
-    if (this.props.uodateCurrentTime){
+    if (this.props.updateCurrentTime){
       let t = this.circle.current.offsetLeft / this.state.maxX * this.props.duration;
-      this.props.uodateCurrentTime(t)
+      this.props.updateCurrentTime(t)
     }
 
   }
@@ -67,7 +66,6 @@ export default class Controls extends Component {
     this.setState({
       isMove: true
     },() => {
-      console.log('hello')
       if (this.props.uodateCurrentTime) {
         let t = this.circle.current.offsetLeft / this.state.maxX * this.props.duration;
         this.props.uodateCurrentTime(t)
@@ -81,14 +79,11 @@ export default class Controls extends Component {
     })
   }
   render() {
-
-    //let l = this.props.currentTime / this.props.duration * this.state.maxX
-
     return (
       <div>
         <div className="m-bottom">
           <div className="m-progress-box">
-            <span className="current-time">00:00</span>
+            <span className="current-time">{sToM(this.props.duration)}</span>
             <div 
               className="m-progress" 
               ref={this.progress}
@@ -106,7 +101,7 @@ export default class Controls extends Component {
                   onTouchEnd={this.end}
                 ></div>
             </div>
-            <span className="total-time">00:00</span>
+            <span className="total-time">{sToM(this.props.currentTime)}</span>
           </div>
           <div className="m-play-control">
             <div className="m-play-btn m-play-prev-btn iconfont icon-audio_last_step"></div>

@@ -13,7 +13,7 @@ export default class Lyrcc extends Component {
     this.rcArr = [];
     this.middle = 0;
     this.onPHeight = 0;
-    this.isMove = false;
+    this.isMove = this.props.lyMove;
   }
   componentDidMount(){
     this.scroll = new BScroll(this.area.current, {
@@ -25,18 +25,18 @@ export default class Lyrcc extends Component {
 
     this.scroll.on('beforeScrollStart', () => {
       clearTimeout(this.timer);
-      this.isMove = true;
+      this.props.changelyMove(true)
     })
     this.scroll.on('scrollEnd', () => {
       clearTimeout(this.timer);
       this.timer = setTimeout(() => {
-        this.isMove = false;
+        this.props.changelyMove(false)
       }, 2000);
     })
     
   }
   componentWillReceiveProps(nextProps){
-    if (this.rcArr && !this.isMove ){
+    if (this.rcArr && !nextProps.lyMove ){
       let index = this.rcArr.findIndex(item => item[0] > nextProps.currentTime) - 1;
       // 直接到最后了，拿到最后一位
       if (index === -2){

@@ -20,12 +20,19 @@ class PlayBottom extends Component {
       isPlay: true,  // 记录歌曲是否在播放
       rcString: '',
       show: true,
+      lyMove: false,
       playInfo: {
         //imgUrl: ''
       }  // 要播放个去的信息
     };
 
     this.audio = React.createRef();
+  }
+
+  changelyMove = (bl) => {
+    this.setState({
+      lyMove: bl
+    })
   }
 
   getSongInfoMethodByHash =  (hash) => {
@@ -94,7 +101,6 @@ class PlayBottom extends Component {
 
   // 音频加载完成
   onLoadedMetadata = () => {
-    console.log('加载完成')
     this.setState({
       duration: this.audio.current.duration
     })
@@ -102,19 +108,19 @@ class PlayBottom extends Component {
 
   // 位置发生变化
   ontimeupdate = () => {
-    console.log('正在播放')
     this.setState({
       currentTime: this.audio.current.currentTime
     })
   }
 
   // 在子级的子级中控制currentTime
-  uodateCurrentTime = (t) => {
+  updateCurrentTime = (t) => {
     this.setState({
-      currentTime: t
+      currentTime: t,
+      lyMove: false
     })
-
     this.audio.current.currentTime = t;
+    // 通知歌词，进行滚动
   }
 
   toggleShow = (show) => {
@@ -170,12 +176,14 @@ class PlayBottom extends Component {
           {
             this.state.isShowPlayer
               ? <Player
+                  lyMove={this.state.lyMove}
+                  changelyMove={this.changelyMove}
                   playOrPause={this.playOrPause} 
                   isPlay={this.state.isPlay}
                   nextSong={this.nextSong}
                   duration={this.state.duration}
                   currentTime={this.state.currentTime}
-                  uodateCurrentTime={this.uodateCurrentTime}
+                  uodateCurrentTime={this.updateCurrentTime}
                   playInfo={this.state.playInfo}
                   rcString={this.state.rcString}
                   toggleShow={this.toggleShow}

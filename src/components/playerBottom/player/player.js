@@ -27,6 +27,8 @@ class Player extends Component {
           rcString={this.props.rcString}
           duration={this.props.duration}
           currentTime={this.props.currentTime}
+          lyMove={this.props.lyMove}
+          changelyMove={this.props.changelyMove}
         />
         <Controls {...this.props}/>
       </div>,

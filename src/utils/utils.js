@@ -35,7 +35,8 @@ export function parseLyric(text) {
     //保存最终结果的数组
     result = [];
   //去掉不含时间的行
-
+  var time = lines[0].match(pattern);
+  if (!time) return null;
   lines = lines.map(item => item.trim()).filter(item => item);
   //上面用'\n'生成生成数组时，结果中最后一个为空元素，这里将去掉
   lines[lines.length - 1].length === 0 && lines.pop();

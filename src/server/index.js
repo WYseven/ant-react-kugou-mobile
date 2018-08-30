@@ -4,10 +4,16 @@ let source;
 var baseUrl = '/kugou';
 let oneLeve = axios.create({
   baseURL: baseUrl,
-  responseType: 'json',
   transformResponse(data) {
     if (!data) return;
-    if (typeof data === 'string') data = JSON.parse(data);
+    try{
+      data = JSON.parse(data)
+    }catch(e){
+      console.log(e)
+      // 目的是为了过滤是文本的形式
+      data = data;
+    }
+
     let o = {}
     if (data.list) {
       o.data = data.list;
@@ -29,17 +35,20 @@ let oneLeve = axios.create({
       o.data = data.songs.list;
       o.info = data.info;
       o.origin = 'singers-info'
+    }else {
+      o = data;
     }
     return o;
   }
 })
 
 
-let request = (path) => {
+let request = (path,params) => {
   if (source) source(); // 取消上一次请求
   return new Promise((resolve,reject) => {
     oneLeve(
       path,
+      { params: params},
       {
         // 取消请求的配置
         cancelToken: new CancelToken((c) => {
@@ -88,7 +97,7 @@ export const getSingerInfo = (params = { singerid: '' }) => {
   return request(`/singer/info/${params.singerid}?json=true`)
 }
 
-
+export let axiosRequest = request;
 
 export default {
   getNewSongs,
@@ -98,21 +107,3 @@ export default {
   getSingerList,
   getSingerInfo
 }
-
-
-/* 
-  export let a = 10;
-  export let b = 10;
-  export let c = 10;
-
-  exprort default {}
-
-  用解构赋值拿到export暴漏出来的子
-  import {a,b,c} from ''
-
-  用来接收文件中暴露的  exprort default 对应的值
-  import abc from ''
-
-
-
-*/

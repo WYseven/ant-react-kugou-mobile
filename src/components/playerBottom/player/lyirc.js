@@ -4,6 +4,9 @@ import BScroll from 'better-scroll'
 import { parseLyric } from '../../../utils/utils'
 
 export default class Lyrcc extends Component {
+  static defaultProps = {
+    rcString: '暂无歌词'
+  }
   constructor(props) {
     super(props);
     this.index = 0;
@@ -59,6 +62,7 @@ export default class Lyrcc extends Component {
       <div className="m-lyric-area" ref={this.area}>
         <div className="m-lyric" ref={(lyric) => { this.lyric = lyric}}>
           {
+            !this.rcArr ? <p>暂无歌词</p> :
             this.rcArr.map((item,i) => {
               return <p key={item[0]} className={this.index === i ? 'bg' : ''}
                 >{item[1]}</p>

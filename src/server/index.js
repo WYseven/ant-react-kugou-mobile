@@ -1,5 +1,6 @@
 import axios from 'axios'
-
+let CancelToken = axios.CancelToken;
+let source;
 var baseUrl = '/kugou';
 let oneLeve = axios.create({
   baseURL: baseUrl,
@@ -35,10 +36,24 @@ let oneLeve = axios.create({
 
 
 let request = (path) => {
-  return oneLeve(path).catch((e) => {
-    if (e) {
-      alert('网络错误')
-    }
+  if (source) source(); // 取消上一次请求
+  return new Promise((resolve,reject) => {
+    oneLeve(
+      path,
+      {
+        // 取消请求的配置
+        cancelToken: new CancelToken((c) => {
+          source = c
+        })
+      }
+    ).then(resolve).catch((e) => {
+      if (axios.isCancel(e)){
+        //console.log('取消了请求')
+      }else{
+        reject(e)
+        alert('网络错误')
+      }
+    })
   })
 }
 

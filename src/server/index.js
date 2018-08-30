@@ -1,4 +1,7 @@
 import axios from 'axios'
+
+import { Toast } from 'antd-mobile';
+
 let CancelToken = axios.CancelToken;
 let source;
 var baseUrl = '/kugou';
@@ -58,9 +61,10 @@ let request = (path,params) => {
     ).then(resolve).catch((e) => {
       if (axios.isCancel(e)){
         //console.log('取消了请求')
+        reject(e)
       }else{
         reject(e)
-        alert('网络错误')
+        Toast.offline('网络错误',90000);
       }
     })
   })
@@ -98,6 +102,10 @@ export const getSingerInfo = (params = { singerid: '' }) => {
 }
 
 export let axiosRequest = request;
+// 暴露给外面使用
+export let cancelRequst = () => {
+  if (source) source();
+};
 
 export default {
   getNewSongs,

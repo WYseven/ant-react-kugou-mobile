@@ -3,9 +3,7 @@ import { getDataComponent } from '../../../components/getDataComponent'
 import SongList from '../../comm/songList'
 class SingerInfo extends Component {
   render() {
-    console.log('info',this.props)
     let {info,data} = this.props.data;
-
     return (
       <div>
         <img 

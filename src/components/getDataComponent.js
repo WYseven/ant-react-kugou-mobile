@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import servers from '../server'
+import servers, { cancelRequst } from '../server'
 import {Icon} from 'antd-mobile'
+
 export let getDataComponent = function (serverName,params={}) {
   return function (Component2) {
     return class componentName extends Component {
@@ -10,6 +11,7 @@ export let getDataComponent = function (serverName,params={}) {
           data:{},
           loading: true
         };
+        this.isUnMount = false;
       }
       componentDidMount() {
         // 找到请求的方法
@@ -26,12 +28,22 @@ export let getDataComponent = function (serverName,params={}) {
           p = params(this.props)
         }
         servers[serverName](p).then(({data}) => {
-          this.setState({
-            data,
-            loading: false
-          })
+          console.log('还会成功')
+          if (!this.isUnMount){
+            this.setState({
+              data,
+              loading: false
+            })
+          }
         })
       }
+
+      componentWillUnmount() {
+        // 当卸载时候设置一个标示，在ajax回来时候不触发setState
+        this.isUnMount = true;
+        cancelRequst();
+      }
+
       render() {
         return (
           

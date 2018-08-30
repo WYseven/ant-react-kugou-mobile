@@ -17,12 +17,9 @@ class Routes extends Component {
       scrollY: true
     })
   }
-
   componentDidUpdate(prevProps, prevState) {
-    console.log('更新后')
     this.scroll.refresh();
   }
-  
   render() {
     return (
       <React.Fragment>
